@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rusan Bajracharya | IT Support & Systems</title>
+<style>
+    :root {
+        --primary: #173b68;
+        --secondary: #2d6aa0;
+        --text: #263238;
+        --muted: #68737d;
+        --line: #dce3e8;
+        --bg: #f4f6f8;
+        --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", Arial, sans-serif;
+        line-height: 1.55;
+    }
+
+    .resume {
+        width: min(1100px, calc(100% - 32px));
+        margin: 32px auto;
+        background: var(--white);
+        box-shadow: 0 10px 35px rgba(0,0,0,.10);
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        padding: 42px 48px 34px;
+        background: linear-gradient(135deg, #173b68, #245987);
+        color: white;
+    }
+
+    .identity { flex: 1; }
+
+    h1 {
+        margin: 0;
+        font-size: 38px;
+        letter-spacing: .5px;
+    }
+
+    .role {
+        margin: 7px 0 18px;
+        font-size: 18px;
+        font-weight: 600;
+        opacity: .95;
+    }
+
+    .contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px 18px;
+        font-size: 13px;
+        opacity: .96;
+    }
+
+    .contact a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .photo-wrap {
+        width: 145px;
+        min-width: 145px;
+        height: 165px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .photo {
+        width: 145px;
+        height: 165px;
+        object-fit: cover;
+        border: 4px solid white;
+        border-radius: 8px;
+        background: rgba(255,255,255,.15);
+        display: block;
+    }
+
+    .photo-placeholder {
+        width: 145px;
+        height: 165px;
+        border: 2px dashed rgba(255,255,255,.75);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 12px;
+        padding: 15px;
+    }
+
+    .content {
+        padding: 35px 48px 45px;
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 15px;
+        color: var(--primary);
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .section-title::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--line);
+    }
+
+    .summary {
+        color: #47545e;
+        margin: 0;
+    }
+
+    .skills {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .skill-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 16px;
+    }
+
+    .skill-card h3 {
+        margin: 0 0 9px;
+        color: var(--secondary);
+        font-size: 14px;
+    }
+
+    .skill-card ul,
+    .job ul {
+        margin: 0;
+        padding-left: 18px;
+    }
+
+    .skill-card li,
+    .job li {
+        margin: 3px 0;
+        font-size: 13px;
+    }
+
+    .job {
+        position: relative;
+        padding: 0 0 22px 22px;
+        border-left: 2px solid #d7e0e7;
+        margin-left: 5px;
+    }
+
+    .job:last-child {
+        padding-bottom: 0;
+    }
+
+    .job::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        left: -6px;
+        top: 5px;
+        border-radius: 50%;
+        background: var(--secondary);
+    }
+
+    .job h3 {
+        margin: 0;
+        color: var(--primary);
+        font-size: 16px;
+    }
+
+    .job .period {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 600;
+        margin: 2px 0 8px;
+    }
+
+    .job p {
+        margin: 0 0 8px;
+        font-size: 13px;
+    }
+
+    .two-col {
+        display: grid;
+        grid-template-columns: 1.2fr .8fr;
+        gap: 35px;
+    }
+
+    .simple-list {
+        margin: 0;
+        padding-left: 19px;
+    }
+
+    .simple-list li {
+        margin: 4px 0;
+        font-size: 13px;
+    }
+
+    .objective {
+        background: #eef5fa;
+        border-left: 4px solid var(--secondary);
+        padding: 17px 20px;
+        border-radius: 5px;
+        font-size: 13px;
+    }
+
+    footer {
+        text-align: center;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        padding: 15px;
+        font-size: 11px;
+    }
+
+    @media (max-width: 750px) {
+        header {
+            padding: 30px 25px;
+        }
+
+        .content {
+            padding: 28px 25px 35px;
+        }
+
+        header {
+            align-items: flex-start;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        .photo-wrap,
+        .photo,
+        .photo-placeholder {
+            width: 105px;
+            min-width: 105px;
+            height: 125px;
+        }
+
+        .skills,
+        .two-col {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media print {
+        body {
+            background: white;
+        }
+
+        .resume {
+            width: 100%;
+            margin: 0;
+            box-shadow: none;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        header {
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+        }
+    }
+</style>
+</head>
+
+<body>
+<div class="resume">
+
+<header>
+    <div class="identity">
+        <h1>RUSAN BAJRACHARYA</h1>
+        <div class="role">IT Support &amp; Systems</div>
+
+        <div class="contact">
+            <span>Lalitpur, Nepal</span>
+            <span>📧 <a href="mailto:bajra.rusan@gmail.com">bajra.rusan@gmail.com</a></span>
+            <span>📱 9860849120</span>
+            <span>🔗 <a href="https://www.linkedin.com/in/rusan-bajra" target="_blank">LinkedIn</a></span>
+            <span>💻 <a href="https://github.com/RusanBajra" target="_blank">GitHub</a></span>
+        </div>
+    </div>
+
+    <!-- Replace profile.jpg with your actual photo filename -->
+    <!-- <div class="photo-wrap">
+        <img class="photo" src="profile.jpg" alt="Rusan Bajracharya"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="photo-placeholder" style="display:none;">
+            Add your photo here<br>
+            <strong>profile.jpg</strong>
+        </div>
+    </div> -->
+</header>
+
+<main class="content">
+
+<section class="section">
+    <h2 class="section-title">Professional Profile</h2>
+    <p class="summary" style="text-align:justify">
+        IT Support and Systems professional with practical experience in domain, hosting,
+        business email, server support, DNS, website troubleshooting and infrastructure operations.
+        Experienced with cPanel/WHM, Plesk, Cloudflare, Google Workspace, Zoho Mail, Linux hosting
+        environments and web application deployments, with a career focus on progressing into
+        System Administration, Cloud Infrastructure and DevOps.
+    </p>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Core Technical Skills</h2>
+
+    <div class="skills">
+        <div class="skill-card">
+            <h3>IT Support &amp; Troubleshooting</h3>
+            <ul>
+                <li>Hardware and software troubleshooting</li>
+                <li>Windows and Linux troubleshooting</li>
+                <li>User and account support</li>
+                <li>Technical issue diagnosis and resolution</li>
+                <li>Server and hosting support</li>
+                <li>Website and application troubleshooting</li>
+                <li>Client technical support</li>
+                <li>System documentation and reporting</li>
+            </ul>
+        </div>
+
+        <div class="skill-card">
+            <h3>Server &amp; Hosting Administration</h3>
+            <ul>
+                <li>cPanel / WHM</li>
+                <li>Web hosting management</li>
+                <li>Server resource monitoring</li>
+                <li>SSL/TLS configuration</li>
+                <li>PHP environments</li>
+                <li>Server migration and deployment support</li>
+            </ul>
+        </div>
+
+        <div class="skill-card">
+            <h3>Domains, DNS &amp; Cloud</h3>
+            <ul>
+                <li>Domain registration, renewal and transfer</li>
+                <li>DNS and nameserver management</li>
+                <li>Cloudflare</li>
+                <li>SSL certificate management</li>
+                <li>DNS troubleshooting</li>
+                <li>Google Business Profile</li>
+            </ul>
+        </div>
+
+        <div class="skill-card">
+            <h3>Email &amp; Collaboration Systems</h3>
+            <ul>
+                <li>Google Workspace</li>
+                <li>Zoho Mail</li>
+                <li>Business email administration</li>
+                <li>Mailbox and quota management</li>
+                <li>Email migration and support</li>
+                <li>Email deliverability troubleshooting</li>
+                <li>Spam and bounce investigation</li>
+                <li>IP/domain reputation issues</li>
+                <li>SMTP / MX troubleshooting</li>
+            </ul>
+        </div>
+
+        <div class="skill-card">
+            <h3>Web Technologies &amp; Deployment — Developing</h3>
+            <ul>
+                <li>Core PHP</li>
+                <li>React</li>
+                <li>Next.js</li>
+                <li>Node.js</li>
+                <li>MySQL</li>
+                <li>Docker / Docker Compose</li>
+                <li>Traefik</li>
+            </ul>
+        </div>
+
+        <div class="skill-card">
+            <h3>Cloud &amp; Infrastructure — Developing</h3>
+            <ul>
+                <li>AWS fundamentals</li>
+                <li>VPS infrastructure</li>
+                <li>Docker-based infrastructure</li>
+                <li>Linux server management</li>
+                <li>PostgreSQL administration</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Professional Experience</h2>
+
+    <div class="job">
+        <h3>Longtail E-Media Pvt. Ltd. — Lalitpur, Nepal</h3>
+        <div class="period">Domain, Hosting &amp; IT Support / Systems Support | 2079 Baisakh – Present</div>
+        <p>
+            Responsible for domain, hosting, email, server and technical support operations
+            while assisting with website infrastructure, deployments, troubleshooting and internal systems.
+        </p>
+        <ul>
+            <li>Manage domains, hosting accounts, DNS, SSL certificates, nameservers and web infrastructure.</li>
+            <li>Administer and troubleshoot hosting environments using cPanel, WHM.</li>
+            <li>Provide technical support for websites, business email systems, hosting accounts and servers.</li>
+            <li>Investigate HTTP 403/404 errors, redirects, .htaccess, PHP compatibility, permissions and application configuration.</li>
+            <li>Troubleshoot DNS propagation, MX, SPF, DKIM and DMARC issues.</li>
+            <li>Support Google Workspace and Zoho Mail, including mailbox configuration, licensing and access.</li>
+            <li>Investigate email delivery, bounces, spam filtering, reputation and blacklist/RBL issues.</li>
+            <li>Handle domain registrations, renewals, transfers and registrar-related operations.</li>
+            <li>Assist clients with hosting migrations, DNS changes, SSL implementation and website deployments.</li>
+            <li>Monitor hosting/server capacity and identify requirements for upgrades or dedicated infrastructure.</li>
+            <li>Work with developers on PHP, Laravel, Next.js, Node.js and Django deployments.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <h3>People’s Plaza — Kathmandu, Nepal</h3>
+        <div class="period">Electrician | 2077–2078</div>
+        <p>
+            Handled short circuits, generated electricity bills for shops and monitored technical electrical issues.
+        </p>
+    </div>
+
+    <div class="job">
+        <h3>Energy Saving and Co-operative Pvt. Ltd — Lalitpur, Nepal</h3>
+        <div class="period">Marketing | Collector | 2076</div>
+        <p>Worked in marketing and collection activities.</p>
+    </div>
+
+    <div class="job">
+        <h3>Longtail E-Media Pvt. Ltd. — Lalitpur, Nepal</h3>
+        <div class="period">Content Editor | 2073–2074</div>
+        <p>
+            Responsible for content editing and updating hotel and trekking websites,
+            including study and tally of words.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Cloud &amp; System Administration Development</h2>
+    <div class="objective">
+        Currently developing deeper expertise in AWS, Linux System Administration, Docker,
+        Kubernetes, PostgreSQL, Networking, Server Security, Infrastructure Management,
+        Cloud Infrastructure, Container Orchestration, Backup &amp; Disaster Recovery,
+        Monitoring and Logging.
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Professional Strengths</h2>
+    <div class="two-col">
+        <ul class="simple-list">
+            <li>Strong troubleshooting and problem-solving ability</li>
+            <li>Client-focused technical support</li>
+            <li>Ability to investigate issues across DNS, hosting, server and application layers</li>
+            <li>Comfortable learning unfamiliar technologies through hands-on implementation</li>
+        </ul>
+
+        <ul class="simple-list">
+            <li>Strong interest in Linux and infrastructure</li>
+            <li>Technical communication in practical business terms</li>
+            <li>Experience working with developers, clients and internal teams</li>
+            <li>Documentation and technical reporting</li>
+        </ul>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Education</h2>
+    <div class="two-col">
+        <div>
+            <strong>Bachelors (BCA)</strong><br>
+            Mega National College<br>
+            <span style="color:#68737d;">2076–2081</span>
+        </div>
+        <div>
+            <strong>+2</strong><br>
+            Molihiss<br>
+            <span style="color:#68737d;">2074–2075</span>
+            <br><br>
+            <strong>SEE</strong><br>
+            Little Flowers Public School<br>
+            <span style="color:#68737d;">2073</span>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Career Target</h2>
+    <div class="two-col">
+        <div>
+            <strong>Current Target Roles</strong>
+            <ul class="simple-list">
+                <li>IT Support Engineer</li>
+            </ul>
+        </div>
+
+        <div>
+            <strong>Next Career Step</strong>
+            <ul class="simple-list">
+                <li>System Administrator</li>
+                <li>DevOps / Infrastructure Engineer</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    Rusan Bajracharya · IT Support &amp; Systems ·
+</footer>
+
+</div>
+</body>
+</html>

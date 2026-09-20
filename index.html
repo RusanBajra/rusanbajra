@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rusan Bajracharya — Portfolio & Systems</title>
+    <meta name="description" content="Official portfolio and profile of Rusan Bajracharya. IT Support, Systems & Cloud Operations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0d13;
+            --card-bg: rgba(22, 27, 38, 0.65);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-glow: #6366f1;
+            --accent-cyan: #06b6d4;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Animated Grid */
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+        }
+
+        /* Ambient Glow Spheres */
+        .glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .glow-1 { top: -10%; left: -10%; background: var(--accent-glow); }
+        .glow-2 { bottom: -10%; right: -10%; background: var(--accent-cyan); }
+
+        /* Main Container Card */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 720px;
+            padding: 3rem 2.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: #a5b4fc;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .role-switcher {
+            color: var(--text-primary);
+            font-weight: 500;
+            border-bottom: 2px solid var(--accent-glow);
+            padding-bottom: 2px;
+        }
+
+        /* Progress Card */
+        .progress-box {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            border-radius: 16px;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.6rem;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 78%;
+            background: linear-gradient(90deg, var(--accent-glow), var(--accent-cyan));
+            border-radius: 10px;
+        }
+
+        /* Link Buttons */
+        .links-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .social-btn.primary {
+            background: linear-gradient(135deg, var(--accent-glow), #4f46e5);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .social-btn.primary:hover {
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+        }
+
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Modal / Know About Me Container */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 7, 12, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: #111520;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 900px;
+            max-height: 85vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            padding: 2.5rem;
+            text-align: left;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Modal CV Styling */
+        .cv-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cv-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .cv-header .cv-role {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .cv-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .cv-contacts a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .cv-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .cv-section-title {
+            font-size: 1.1rem;
+            font-family: var(--font-heading);
+            color: #a5b4fc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 6px;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+        }
+
+        .cv-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .cv-card h4 {
+            color: var(--accent-cyan);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .cv-card ul {
+            padding-left: 18px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .cv-card li {
+            margin-bottom: 4px;
+        }
+
+        .cv-timeline-item {
+            border-left: 2px solid var(--accent-glow);
+            padding-left: 18px;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .cv-timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+        }
+
+        .cv-timeline-item h4 {
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .cv-timeline-item .period {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            margin-bottom: 8px;
+        }
+
+        .cv-timeline-item p, .cv-timeline-item ul {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .cv-timeline-item ul {
+            padding-left: 18px;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 2rem 1.25rem; }
+            .links-group { flex-direction: column; }
+            .social-btn { justify-content: center; width: 100%; }
+            .modal-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <!-- Main Container -->
+    <main class="container">
+        <div class="badge">
+            <span class="status-dot"></span> Under Active Development
+        </div>
+
+        <h1>Rusan Bajracharya</h1>
+        
+        <p class="subtitle">
+            Crafting scalable systems & infrastructure operations.
+            <br>
+            Focusing on <span class="role-switcher" id="role-text">IT Support & Systems</span>.
+        </p>
+
+        <div class="progress-box">
+            <div class="progress-header">
+                <span>Portfolio Launch Status</span>
+                <span style="color: var(--text-primary); font-weight: 600;">78% Complete</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <div class="links-group">
+            <!-- Know About Me Button -->
+            <button class="social-btn primary" id="open-modal-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                Know About Me
+            </button>
+
+            <!-- GitHub -->
+            <a href="https://github.com/RusanBajra" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/rusan-bajra" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                LinkedIn
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:bajra.rusan@gmail.com" class="social-btn" aria-label="Email">
+                <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+                Email Me
+            </a>
+        </div>
+    </main>
+
+    <!-- Know About Me Modal Container -->
+    <div class="modal-overlay" id="cv-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="close-modal-btn">&times;</button>
+            
+            <div class="cv-header">
+                <h2>Rusan Bajracharya</h2>
+                <div class="cv-role">IT Support &amp; Systems Professional</div>
+                <div class="cv-contacts">
+                    <span>📍 Lalitpur, Nepal</span>
+                    <span>📧 <a href="mailto:bajra.rusan@gmail.com">bajra.rusan@gmail.com</a></span>
+                    <span>📱 9860849120</span>
+                </div>
+            </div>
+
+            <!-- Profile Summary -->
+            <div class="cv-section">
+                <div class="cv-section-title">Professional Profile</div>
+                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.9rem;">
+                    IT Support and Systems professional with practical experience in domain, hosting,
+                    business email, server support, DNS, website troubleshooting and infrastructure operations.
+                    Experienced with cPanel/WHM, Plesk, Cloudflare, Google Workspace, Zoho Mail, Linux hosting
+                    environments and web application deployments, with a career focus on progressing into
+                    System Administration, Cloud Infrastructure and DevOps.
+                </p>
+            </div>
+
+            <!-- Core Skills Grid -->
+            <div class="cv-section">
+                <div class="cv-section-title">Core Technical Skills</div>
+                <div class="cv-grid">
+                    <div class="cv-card">
+                        <h4>IT Support & Troubleshooting</h4>
+                        <ul>
+                            <li>Hardware & software troubleshooting</li>
+                            <li>Windows and Linux environments</li>
+                            <li>Server, hosting & application diagnosis</li>
+                            <li>Documentation and technical reporting</li>
+                        </ul>
+                    </div>
+                    <div class="cv-card">
+                        <h4>Server & Hosting Admin</h4>
+                        <ul>
+                            <li>cPanel / WHM / Plesk</li>
+                            <li>Server resource monitoring</li>
+                            <li>SSL/TLS & PHP configuration</li>
+                            <li>Server migration and deployment</li>
+                        </ul>
+                    </div>
+                    <div class="cv-card">
+                        <h4>Domains, DNS & Cloud</h4>
+                        <ul>
+                            <li>Domain registration, transfers & DNS</li>
+                            <li>Cloudflare & SSL certificate management</li>
+                            <li>DNS & MX record troubleshooting</li>
+                        </ul>
+                    </div>
+                    <div class="cv-card">
+                        <h4>Email & Collaboration</h4>
+                        <ul>
+                            <li>Google Workspace & Zoho Mail</li>
+                            <li>Mailbox quota & delivery setup</li>
+                            <li>SPF, DKIM, DMARC & RBL investigation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Experience -->
+            <div class="cv-section">
+                <div class="cv-section-title">Professional Experience</div>
+                
+                <div class="cv-timeline-item">
+                    <h4>Longtail E-Media Pvt. Ltd. — Lalitpur, Nepal</h4>
+                    <div class="period">Domain, Hosting & IT Support / Systems Support | 2079 Baisakh – Present</div>
+                    <p>Responsible for domain, hosting, email, server and technical support operations while assisting with website infrastructure, deployments, troubleshooting and internal systems.</p>
+                    <ul>
+                        <li>Manage domains, hosting accounts, DNS, SSL certificates, nameservers and web infrastructure.</li>
+                        <li>Administer and troubleshoot hosting environments using cPanel & WHM.</li>
+                        <li>Investigate HTTP 403/404 errors, redirects, .htaccess, PHP compatibility & permissions.</li>
+                        <li>Troubleshoot DNS propagation, MX, SPF, DKIM and DMARC issues.</li>
+                        <li>Work with developers on PHP, Laravel, Next.js, Node.js and Django deployments.</li>
+                    </ul>
+                </div>
+
+                <div class="cv-timeline-item">
+                    <h4>People’s Plaza — Kathmandu, Nepal</h4>
+                    <div class="period">Electrician | 2077–2078</div>
+                    <p>Handled short circuits, generated electricity bills for shops and monitored technical electrical issues.</p>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="cv-section">
+                <div class="cv-section-title">Education</div>
+                <div class="cv-grid">
+                    <div class="cv-card">
+                        <h4>Bachelors (BCA)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">Mega National College (2076–2081)</p>
+                    </div>
+                    <div class="cv-card">
+                        <h4>+2 & SEE</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">Molihiss / Little Flowers Public School</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Rotating Role Text Animation
+        const roles = [
+            "IT Support & Systems",
+            "Domain & Hosting Admin",
+            "Cloud Infrastructure",
+            "Linux & Server Support"
+        ];
+        
+        let roleIndex = 0;
+        const roleElement = document.getElementById("role-text");
+
+        setInterval(() => {
+            roleElement.style.opacity = '0';
+            roleElement.style.transition = 'opacity 0.3s ease';
+            
+            setTimeout(() => {
+                roleIndex = (roleIndex + 1) % roles.length;
+                roleElement.textContent = roles[roleIndex];
+                roleElement.style.opacity = '1';
+            }, 300);
+        }, 3000);
+
+        // Modal Logic for "Know About Me"
+        const modal = document.getElementById('cv-modal');
+        const openBtn = document.getElementById('open-modal-btn');
+        const closeBtn = document.getElementById('close-modal-btn');
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside card
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
